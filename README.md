@@ -1,8 +1,4 @@
-<p align="center">
-   <video width="600" height="400" controls>
-      <source src="https://github.com/V-Gutierrez/my-rust-shell/assets/62355596/7d5f6f23-291b-4774-a84e-94aa301b5b2d" type="video/mp4">
-</video>
-</p>
+https://github.com/V-Gutierrez/my-rust-shell/assets/62355596/7d5f6f23-291b-4774-a84e-94aa301b5b2d
 
 # My Rust Shell
 
