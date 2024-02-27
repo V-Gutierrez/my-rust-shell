@@ -1,3 +1,4 @@
+use colored::Colorize; // Add this line to your dependencies in Cargo.toml
 use std::{
     env::{self},
     io::{stdin, stdout, Write},
@@ -9,7 +10,11 @@ use std::{
 fn main() {
     loop {
         // TODO: Improve Prompt
-        print!("--->>> ");
+        let current_dir = env::current_dir().unwrap().display().to_string();
+        let user = env::var("USER").unwrap();
+        let os = env::consts::OS;
+
+        print!("{}|{}@{} -->", os.green(), user.blue(), current_dir.cyan());
 
         stdout().flush();
 
@@ -34,7 +39,7 @@ fn main() {
                 if let Err(e) = env::set_current_dir(root) {
                     eprintln!("{}", e);
                 }
-            },
+            }
             "exit" => {
                 break;
             }
