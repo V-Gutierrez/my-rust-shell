@@ -6,18 +6,21 @@ use std::{
     process::Command,
 };
 
-#[allow(unused_must_use)]
-fn main() {
+fn print_prompt() {
+    let current_dir = env::current_dir().unwrap().display().to_string();
+    let user = env::var("USER").unwrap();
+    let os = env::consts::OS;
+
+    print!("{}|{} @ {} -->", os.green(), user.blue(), current_dir.cyan());
+
+    let _ = stdout().flush();
+}
+
+fn execute_shell() {
+
     loop {
-        // TODO: Improve Prompt
-        let current_dir = env::current_dir().unwrap().display().to_string();
-        let user = env::var("USER").unwrap();
-        let os = env::consts::OS;
-
-        print!("{}|{}@{} -->", os.green(), user.blue(), current_dir.cyan());
-
-        stdout().flush();
-
+        print_prompt();
+        
         let mut input = String::new();
 
         stdin().read_line(&mut input).unwrap();
@@ -49,11 +52,16 @@ fn main() {
 
                 match child {
                     Ok(mut child) => {
-                        child.wait();
+                        let _ = child.wait();
                     }
                     Err(e) => eprintln!("{}", e),
                 };
             }
         }
     }
+
+}
+
+fn main() {
+    execute_shell()
 }
