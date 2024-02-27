@@ -11,16 +11,20 @@ fn print_prompt() {
     let user = env::var("USER").unwrap();
     let os = env::consts::OS;
 
-    print!("{}|{} @ {} -->", os.green(), user.blue(), current_dir.cyan());
+    print!(
+        "{}|{} @ {} -->",
+        os.green(),
+        user.blue(),
+        current_dir.cyan()
+    );
 
     let _ = stdout().flush();
 }
 
 fn execute_shell() {
-
     loop {
         print_prompt();
-        
+
         let mut input = String::new();
 
         stdin().read_line(&mut input).unwrap();
@@ -59,7 +63,6 @@ fn execute_shell() {
             }
         }
     }
-
 }
 
 fn main() {
